@@ -6,21 +6,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-//@SpringBootApplication
-//public class SreecMatchApplication implements CommandLineRunner {
-//
-//	@Autowired
-//	Menu menu;
-//
-//	public static void main(String[] args) {
-//
-//		SpringApplication.run(SreecMatchApplication.class, args);
-//	}
-//
-//	@Override
-//	public void run(String... args) throws Exception {
-//
-//	    menu.exibirMenu();
-//
-//	}
-//}
+@SpringBootApplication
+public class SreecMatchApplication {
+	public static void main(String[] args) {
+
+		SpringApplication.run(SreecMatchApplication.class, args);
+	}
+
+}

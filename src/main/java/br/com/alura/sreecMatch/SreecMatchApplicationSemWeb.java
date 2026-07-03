@@ -6,11 +6,21 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
-public class SreecMatchApplicationSemWeb {
-
-	public static void main(String[] args) {
-
-		SpringApplication.run(SreecMatchApplicationSemWeb.class, args);
-	}
-}
+//@SpringBootApplication
+//public class SreecMatchApplicationSemWeb implements CommandLineRunner {
+//
+//	@Autowired
+//	Menu menu;
+//
+//	public static void main(String[] args) {
+//
+//		SpringApplication.run(SreecMatchApplicationSemWeb.class, args);
+//	}
+//
+//	@Override
+//	public void run(String... args) throws Exception {
+//
+//	    menu.exibirMenu();
+//
+//	}
+//}
