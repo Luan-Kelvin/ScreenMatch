@@ -16,6 +16,8 @@ public interface SerieRepository extends JpaRepository<Serie,Long> {
 
     List<Serie> findTop5ByOrderByAvaliacaoDesc();
 
+    List<Serie> findTop3ByOrderByAvaliacaoDesc();
+
     @Query("""
             SELECT s
             FROM Serie s

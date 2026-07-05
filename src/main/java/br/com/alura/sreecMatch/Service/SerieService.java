@@ -1,6 +1,7 @@
 package br.com.alura.sreecMatch.Service;
 
 
+import br.com.alura.sreecMatch.DTO.SerieDto;
 import br.com.alura.sreecMatch.Models.DadosSerie;
 import br.com.alura.sreecMatch.Models.DadosTemporada;
 import br.com.alura.sreecMatch.Models.Episodio;
@@ -25,6 +26,19 @@ public class SerieService {
 
     @Autowired
     DadosService dadosService;
+
+    @Autowired
+    ConverterDados converterDados;
+
+    public List<SerieDto> obterSerie(){
+        return converterDados.converterParaDTO(serieRepository.findAll());
+
+    }
+
+    @Transactional
+    public List<SerieDto> obterTop3(){
+        return converterDados.converterParaDTO(serieRepository.findAll());
+    }
 
     public void buscarSerie(String nomeSerie){
         try {

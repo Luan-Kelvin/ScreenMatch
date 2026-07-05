@@ -1,7 +1,7 @@
 package br.com.alura.sreecMatch.Controller;
 
 import br.com.alura.sreecMatch.DTO.SerieDto;
-import br.com.alura.sreecMatch.Repository.SerieRepository;
+import br.com.alura.sreecMatch.Service.SerieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,22 +11,15 @@ import java.util.List;
 @RestController
 public class SerieController {
     @Autowired
-    SerieRepository serieRepository;
+    SerieService serieService;
 
     @GetMapping("/series")
     public List<SerieDto> obterSerie(){
-        return serieRepository.findAll()
-                .stream()
-                .map(s ->  new SerieDto(
-                        s.getId(),
-                        s.getTitle(),
-                        s.getAvaliacao(),
-                        s.getGenero(),
-                        s.getTotaltemporadas(),
-                        s.getAtores(),
-                        s.getPoster(),
-                        s.getSinopse()
-                ))
-                .toList();
+       return serieService.obterSerie();
+    }
+
+    @GetMapping("/series/top3")
+    public List<SerieDto> top3Series(){
+        return serieService.obterTop3();
     }
 }
