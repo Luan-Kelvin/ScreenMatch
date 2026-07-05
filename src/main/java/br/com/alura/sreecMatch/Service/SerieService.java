@@ -40,6 +40,10 @@ public class SerieService {
         return converterDados.converterParaDTO(serieRepository.findAll());
     }
 
+    public  List<SerieDto> obterLancamentos(){
+        return converterDados.converterParaDTO(serieRepository.serieMaisRecentes());
+    }
+
     public void buscarSerie(String nomeSerie){
         try {
             DadosSerie dadosSerie = dadosService.obterDadosGerais(nomeSerie);

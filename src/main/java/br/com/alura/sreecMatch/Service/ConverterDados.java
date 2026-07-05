@@ -5,9 +5,11 @@ import br.com.alura.sreecMatch.Models.IConverteDados;
 import br.com.alura.sreecMatch.Models.Serie;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ConverterDados implements IConverteDados {
     private ObjectMapper mapper = new ObjectMapper();
 
