@@ -16,12 +16,14 @@ public interface SerieRepository extends JpaRepository<Serie,Long> {
 
     List<Serie> findTop5ByOrderByAvaliacaoDesc();
 
+    Optional<Serie> findById(Long id);
+
     List<Serie> findTop3ByOrderByAvaliacaoDesc();
 
     @Query("""
             SELECT s
             FROM Serie s
-            JOIN episodios e
+            JOIN s.episodios e
             ORDER BY e.dataLancamento DESC
             """)
     List<Serie> serieMaisRecentes();

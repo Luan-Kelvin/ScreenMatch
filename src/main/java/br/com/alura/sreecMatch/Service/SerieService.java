@@ -78,6 +78,28 @@ public class SerieService {
     }
 
     @Transactional
+    public SerieDto obterPorId(Long id){
+        Optional<Serie> serie = serieRepository.findById(id);
+
+        if (serie.isPresent()){
+            Serie s = serie.get();
+
+            SerieDto serieDto = new SerieDto(s.getId(),
+                    s.getTitle(),
+                    s.getAvaliacao(),
+                    s.getGenero(),
+                    s.getTotaltemporadas(),
+                    s.getAtores(),
+                    s.getPoster(),
+                    s.getSinopse());
+
+            return serieDto;
+        }
+
+        return null;
+    }
+
+    @Transactional
     public void listarSeries(){
         List<Serie> lista = serieRepository.findAll();
 
