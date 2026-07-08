@@ -24,4 +24,12 @@ public interface EpisodioRepository extends JpaRepository<Episodio, Long> {
             LIMIT 5
             """)
     List<Episodio> top5Episodios(String nomeSerie);
+
+    @Query("""
+            SELECT e
+            FROM Serie s
+            JOIN s.episodios e
+            WHERE s.id = :idSerie
+            """)
+    List<Episodio> buscarEpisodiosPorSerie(Long idSerie);
 }

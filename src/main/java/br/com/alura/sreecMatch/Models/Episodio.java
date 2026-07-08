@@ -71,7 +71,29 @@ public class Episodio {
         this.serie = serie;
     }
 
+    public Long getId() {
+        return id;
+    }
 
+    public Integer getTemporada() {
+        return temporada;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public Integer getNumEpisodio() {
+        return numEpisodio;
+    }
+
+    public Double getAvaliacao() {
+        return avaliacao;
+    }
+
+    public LocalDate getDataLancamento() {
+        return dataLancamento;
+    }
 
     @Override
     public String toString() {

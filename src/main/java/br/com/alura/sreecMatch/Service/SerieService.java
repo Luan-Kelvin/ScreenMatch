@@ -2,16 +2,14 @@ package br.com.alura.sreecMatch.Service;
 
 
 import br.com.alura.sreecMatch.DTO.SerieDto;
-import br.com.alura.sreecMatch.Models.DadosSerie;
-import br.com.alura.sreecMatch.Models.DadosTemporada;
-import br.com.alura.sreecMatch.Models.Episodio;
-import br.com.alura.sreecMatch.Models.Serie;
+import br.com.alura.sreecMatch.Models.*;
 import br.com.alura.sreecMatch.Repository.EpisodioRepository;
 import br.com.alura.sreecMatch.Repository.SerieRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -100,10 +98,48 @@ public class SerieService {
     }
 
     @Transactional
+    public List<DadosEpisodio> exibirEpisodiosPorSerie(Long id){
+        List<Episodio> episodios = episodioRepository.buscarEpisodiosPorSerie(id);
+
+        if (episodios.isEmpty()){
+            System.out.println("Não foi encontrado nenhum episodio da serie com id: "+id);
+            return null;
+        }
+
+        return episodios.stream()
+                .map(
+                ep -> new DadosEpisodio(ep.getTitulo(),
+                        ep.getNumEpisodio(), ep.getTemporada(),
+                        String.valueOf(ep.getAvaliacao()),
+                        String.valueOf(ep.getDataLancamento())
+                ))
+                .toList();
+    }
+
+    @Transactional
     public void listarSeries(){
         List<Serie> lista = serieRepository.findAll();
 
         lista.stream().sorted(Comparator.comparing(Serie::getGenero).thenComparing(Serie::getTitle)).forEach(System.out::println);
+    }
+
+    @Transactional
+    public List<DadosEpisodio> listarEpisodios(){
+        List<Episodio> episodios = episodioRepository.findAll();
+
+        if (episodios.isEmpty()){
+            System.out.println("Nao temos nenhum episodio cadastrado");
+            return new ArrayList<>();
+        }
+
+        return episodios.stream()
+                .map(
+                        ep -> new DadosEpisodio(ep.getTitulo(),
+                                ep.getNumEpisodio(), ep.getTemporada(),
+                                String.valueOf(ep.getAvaliacao()),
+                                String.valueOf(ep.getDataLancamento())
+                ))
+                .toList();
     }
 
     @Transactional

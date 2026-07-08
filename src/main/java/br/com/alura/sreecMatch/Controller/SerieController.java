@@ -1,6 +1,7 @@
 package br.com.alura.sreecMatch.Controller;
 
 import br.com.alura.sreecMatch.DTO.SerieDto;
+import br.com.alura.sreecMatch.Models.DadosEpisodio;
 import br.com.alura.sreecMatch.Service.SerieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,5 +35,16 @@ public class SerieController {
     @GetMapping("/{id}")
     public SerieDto obterPorId(@PathVariable Long id){
         return serieService.obterPorId(id);
+    }
+
+    @GetMapping("/episodios")
+    public List<DadosEpisodio> exibirTodosEpisodios(){
+        return serieService.listarEpisodios();
+    }
+
+    @GetMapping("{id}/temporadas/todas")
+    public List<DadosEpisodio> obterEpisodioPorSeries(@PathVariable Long id){
+        return serieService.exibirEpisodiosPorSerie(id);
+
     }
 }
